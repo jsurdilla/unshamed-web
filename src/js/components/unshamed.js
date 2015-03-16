@@ -1,19 +1,29 @@
 /** @jsx React.DOM */
 
+var CurrentUserStore = require('../stores/CurrentUserStore');
 var React = require('react');
+var Nav = require('./AppNav');
 var Router = require('react-router');
-var { Route, RouteHandler, Link, State } = Router;
+var { RouteHandler } = Router;
 
 var Unshamed = React.createClass({
-  render: function() {
+  componentWillMount() {
+    console.log('Unshamed#componentWillMount');
+  },
+
+  componentDidMount() {
+    console.log('Unshamed#componentDidMount');
+  },
+
+  render() {
+    const user = CurrentUserStore.getCurrentUser();
+
     return (
       <div>
-        <h1>Unshamed II</h1>
-        <RouteHandler />
+        <RouteHandler { ...this.props } />
       </div>
     );
   }
 });
 
 module.exports = Unshamed;
-

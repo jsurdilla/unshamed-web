@@ -1,0 +1,9 @@
+#auto-suggest {
+  ul.suggestions {
+    list-style: none;
+
+    li.suggestion {
+      a span { font-weight: bold; }
+    }
+  }
+}

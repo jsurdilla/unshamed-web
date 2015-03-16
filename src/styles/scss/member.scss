@@ -1,0 +1,71 @@
+@import 'mixins';
+@import 'shared/timeline';
+@import "variables";
+@import "base";
+
+#member-details {
+  .user-pic {
+    img { width: 100%; @include border-radius(500px) }
+  }
+
+  .friend-req {
+    margin-top: 1rem;
+
+    button { @include border-radius(20px); width: 100%; }
+  }
+
+  .user-info {
+    margin-top: 2rem;
+
+    label { font-weight: 500; text-transform: uppercase; font-size: 0.9em; color: #aaa; display: block; margin-bottom: 0; }
+    .body { margin-bottom: 1em; }
+  }
+
+  .left-rail, .right-rail { @include make-sm-column(3); }
+
+  iframe { border: none; }
+
+  @include timeline;
+}
+
+#mhp-profile {
+  .basic-info {
+    @include make-row(); 
+    margin-bottom: 3rem;
+
+    .profile-pic {
+      @include make-sm-column(3);
+
+      img { @include border-radius(250px); width: 100%; }
+    }
+
+    .background {
+      @include make-sm-column(7);
+      padding-top: 1rem;
+
+      h2 { font-size: 2.5rem; }
+      h2 ~ div { font-size: 1.5rem; }
+    }
+  }
+
+  .details { @include make-row() }
+
+  .about-me {
+    @include make-sm-column(9);
+
+    font-size: 16px;
+    line-height: 1.5em;
+
+    h4 {
+      margin-top: 1em;
+    }
+  }
+
+  .other-mhps {
+    @include make-sm-column(3);
+
+    section.experts { 
+      margin-top: 0;
+    }
+  }
+}

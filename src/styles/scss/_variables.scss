@@ -1,0 +1,48 @@
+$warning: #D75050;
+
+$green: #31AB9E;
+$darker-green: #156B62;
+
+$unshamed-blue: #1967a9;
+
+$turquoise: #31AB9E;
+$bg-turquoise: #F9FBFC;
+$light-bg: #F9FBFC;
+$input-bg: #F9FBFC; // randomly selected
+$light-turquoise: #A6D9D5;
+$dark-turquoise: #156B62;
+$border-turquoise: #9AD2CC;
+
+$border-turquoise: #9AD2CC;
+$sidebar-background: #FAFAFA;
+$sidebar-border: #ECECEC;
+$input-border: #ECECEC; // randomly selected
+
+$bg-gray: #FAFAFA;
+$border-gray: #ECECEC;
+$text-gray: #3F3F3F;
+
+$members-color: #ECE157;
+$experts-color: #4A90E2;
+
+$hover-gray: #e9ebec;
+$dark-turquoise: #156B62;
+$border-turquoise: #9AD2CC;
+
+$dull-orange: #E76852;
+$red-link: #C5000D;
+
+$error-border: #ebb1b2;
+$error-text: #d66061;
+
+// font variables
+$font-family-base: 'Lato';
+$font-size-base: 13px;
+
+// screen variables
+$grid-gutter-width: 20px;
+$container-large-desktop: (940px + $grid-gutter-width);
+
+$icon-font-path: "bootstrap-sass/assets/fonts/bootstrap/";
+
+@import "bootstrap/mixins/buttons";

@@ -1,0 +1,278 @@
+@import 'variables';
+@import 'base';
+
+@import 'bootstrap';
+
+@import "compass/css3/transform";
+
+textarea { resize: none; }
+
+a {
+  color: $unshamed-blue;
+
+  &:hover { cursor: pointer; text-decoration: none; color: $turquoise; }
+}
+
+h1, h2, h3, h4, h5, h6 { font-weight: 600; margin-top: 0.5rem; }
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.75rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25em; }
+h5 { font-size: .85em; }
+h6 { font-size: .75em; }
+
+button:focus, a:focus, input:focus { outline:0; }
+
+// NAVIGATION
+.navbar-default {
+  background-color: #25ad9f;
+  border-bottom: 4px solid $dark-turquoise;
+  height: 64px;
+
+  .navbar-brand {
+    color: white;
+
+    img { width: 150px; }
+  }
+
+  .navbar-nav > li > a { line-height: 30px; }
+  .navbar-nav .dropdown-toggle,
+  .navbar-nav > .open > a,
+  .navbar-nav > .open > a:hover,
+  .navbar-nav > .open > a:focus {
+    background-color: #23a597;
+    color: white;
+    border-bottom: 4px solid $dark-turquoise;
+    height: 64px;
+  }
+
+  .navbar-nav .dropdown-toggle img {
+    height: 26px;
+    &.profile-pic { margin-left: 10px; height: 30px; width: 30px; @include border-radius(15px); }
+  }
+
+  .navbar-nav .dropdown-menu {
+    background: white;
+    li { height: 44px; }
+  }
+
+  .navbar-nav > li > a {
+    color: white;
+
+    &:hover { background-color: #23a597; color: white; cursor: pointer; border-bottom: 4px solid $dark-turquoise; height: 64px; }
+  }
+
+  .friend-req-count { position: absolute; top: 10px; right: 0px; background-color: $unshamed-blue; }
+
+  .navbar-nav li.friend-req {
+    padding: 10px;
+    width: 220px;
+
+    img { width: 36px; vertical-align: top; }
+
+    .actions { display: inline-block; margin-left: 1.2em; }
+    .name { color: $dark-turquoise; font-size: 1.25em; font-weight: bold; display: block; letter-spacing: 0.025em; text-transform: none; }
+    a { font-size: 0.9em; text-transform: uppercase; margin-right: 1.5rem; display: inline-block;  margin-top: 0.25em; }
+  }
+
+  .navbar-nav li.no-friend-req { width: 200px; margin: 10px; }
+}
+
+@media (min-width: $screen-xs-min) {
+  .navbar-default {
+    .navbar-nav .dropdown-toggle { background-color: transparent; }
+  }
+}
+
+// FORMS
+.form-control {
+  @include border-radius(0);
+  box-shadow: none;
+}
+
+// BUTTONS
+
+.btn {
+  @include border-radius(0);
+  border: none;
+}
+
+.btn-primary {
+  background-color: $green !important;
+
+  &:hover, &:active, &.active { background-color: #178377 !important; }
+  &:focus { outline-color: $turquoise; }
+  &[disabled] { background-color: #1F8F83; color: #83E6DA; }
+}
+
+// SITE-WIDE STYLES
+img.rounded {
+  @include border-radius(100px);
+}
+
+.wire-section {
+  background-color: $bg-turquoise;
+  border: 1px solid $border-turquoise;
+  margin-bottom: 20px;
+
+  h3 { border-bottom: 1px solid $border-turquoise; color: $turquoise; padding: 10px; margin: 0; }
+  .content { padding: 10px; }
+  .content > ol { margin-bottom: 0; }
+
+  &.friends {
+   li {
+     img { width: 36px; height: 36px; }
+     a { margin-left: 8px; vertical-align: top; }
+   }
+  }
+}
+
+.wire-btn {
+  background-color: transparent;
+  border: 1px solid $border-turquoise;
+  color: $turquoise;
+  display: block;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 10px;
+  padding: 10px;
+  text-align: center;
+
+  img { height: 24px; margin-right: 10px; }
+
+  &:hover { background-color: $bg-turquoise; color: $turquoise; }
+
+  &.warning {
+    color: $warning;
+    border-color: $warning;
+  }
+}
+
+.typeahead {
+  ul.results {
+    list-style: none;
+
+    li {
+      &:hover {
+        background-color: $light-bg;
+      }
+    }
+  }
+}
+
+a.support {
+  img { width: 18px; height: auto; }
+}
+
+.typeahead-tokenizer {
+  border-bottom: 1px solid $turquoise;
+  padding: 4px 8px 4px 30px;
+
+  .typeahead-token {
+    border: 1px solid #31AB9E;
+    background: white;
+    margin: 2px;
+    display: inline-block;
+    padding: 3px 6px;
+    @include border-radius(4px);
+    color: #333;
+    font-weight: bold;
+
+    .typeahead-token-close {
+      margin: 2px;
+    }
+  }
+
+  .typeahead {
+    display: inline-block;
+    input { border: none; padding: 3px 6px; margin: 2px; }
+  }
+
+  .typeahead-selector {
+    position: absolute;
+    left: 0;
+    list-style: none;
+    width: 100%;
+    padding: 0;
+
+    li {
+      padding: 8px;
+      background: #F9FBFC;
+      border-bottom: 1px solid #31AB9E;
+
+      &:hover, &.hover {
+        background: $green;
+        a { color: white; }
+      }
+    }
+  }
+}
+
+.left-rail, .right-rail {
+  section h3 {
+    color: $turquoise;
+    padding: 10px;
+    margin: 0;
+  }
+}
+
+.flip-container {
+  @include perspective(1000px);
+  @include transform-style(preserve-3d);
+
+  &.flipped .back { @include transform(rotateY(0deg)) }
+  &.flipped .front { @include transform(rotateY(180deg)) }
+
+  .front, .back {
+    background-color: rgba(0,0,0,0.2);
+    @include backface-visibility(hidden);
+    @include transition(0.6s);
+    @include transform-style(preserve-3d);
+
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .front { z-index: 2; @include transform(rotateY(0deg)) }
+  .back { z-index: 2; @include transform(rotateY(-180deg)) }
+}
+
+section {
+  margin-bottom: 20px;
+
+  &.members, &.experts {
+    margin-top: 20px;
+    padding-bottom: 10px;
+
+    ul { list-style: none; padding-left: 10px; }
+
+    li {
+      float: left;
+      width: 50px;
+      height: 50px;
+
+      img {  @include border-radius(30px); padding: 2px;width: 100%; height: 100%; }
+    }
+  }
+
+  &.experts { border-left: 4px solid $experts-color; }
+  &.members { border-left: 4px solid $members-color; }
+}
+
+// Delete confirmation dialogs
+a.delete {
+  img { width: 10px; }
+}
+.modal.confirm-delete {
+  .modal-dialog {
+    width: 350px;
+
+    h4 { margin-bottom: 2rem; font-size: 1.4rem; }
+    button { margin: 0 2px; }
+  }
+}

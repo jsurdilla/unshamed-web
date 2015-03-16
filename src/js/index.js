@@ -1,39 +1,44 @@
-/** @jsx React.DOM */
+'use strict';
 
-var Unshamed = require('./components/unshamed');
-// var AppDispatcher = require('./dispatchers/app_dispatcher');
-var Login = require('./components/login');
-var Logout = require('./components/logout');
+require('traceur/bin/traceur-runtime');
+
+var { last } = require('lodash');
+var AppDispatcher = require('./dispatcher/AppDispatcher');
+var UserHome = require('./pages/UserHome');
+var Conversations = require('./components/conversations/Conversations');
+var Conversation = require('./components/conversations/Conversation');
+var JournalEntries = require('./pages/JournalEntries');
+var NewJournalEntry = require('./pages/NewJournalEntry');
+var JournalEntry = require('./pages/JournalEntry');
+var Landing = require('./pages/Landing');
+var Member = require('./pages/Member');
+var MyProfile = require('./pages/MyProfile');
+var NewConversation = require('./components/conversations/NewConversation');
+var Onboard = require('./pages/Onboard');
+var PusherUtils = require('./utils/PusherUtils');
 var React = require('react');
 var Router = require('react-router');
-var { Route, RouteHandler, Link, State } = Router;
-var superagent = require('superagent');
-// var ActionTypes = require('./constants/action_types');
-
-function signIn(data) {
-  superagent
-    .post('/auth/sign_in')
-    .send(data)
-    .set('Accept', 'application/json')
-    .end(function(err, res) {
-      console.log(err, res);
-      AppDispatcher.handleViewAction({
-        actionType: ActionTypes.AUTH_SIGNIN_SUCCESS,
-        item: res
-      }, res);
-    });
-};
+var { Route, DefaultRoute } = Router;
+var Unshamed = require('./components/unshamed');
 
 var routes = (
-  <Route handler={Unshamed}>
-    <Route name='login' handler={Login} />
-    <Route name='logout' handler={Logout} />
+  <Route name='root' handler={ Unshamed } path='/'>
+    <DefaultRoute name='landing' handler={ Landing } />
+    <Route name='onboarding' handler={ Onboard } />
+    <Route name='home' handler={ UserHome } />
+    <Route name='conversations' handler={ Conversations }>
+      <Route name='new_conversation' path='new' handler={ NewConversation } />
+      <Route name='conversation' path=':conversationID' handler={ Conversation } />
+    </Route>
+    <Route name='member' path='member/:userID' handler={ Member } />
+    <Route name='journal_entries' handler={ JournalEntries }>
+      <Route name='new_journal_entry' path='new' handler={ NewJournalEntry } />
+      <Route name='journal_entry' path=':journalEntryID' handler={ JournalEntry } />
+    </Route>
+    <Route name='my_profile' handler={ MyProfile } />
   </Route>
 );
 
-signIn({ email: 'jlsurdilla@gmail.com', password: 'password' });
-
-Router.run(routes, function(Handler) {
-  React.render(<Handler />, document.getElementById('unshamed'));
+Router.run(routes, function(Handler, state) {
+  React.render(<Handler {...state} />, document.getElementById('unshamed'));
 });
-

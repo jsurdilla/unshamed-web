@@ -1,0 +1,67 @@
+@import 'mixins';
+@import 'shared/timeline';
+@import "variables";
+@import "base";
+
+#home-timeline {
+  $light-bg: #F9FBFC;
+
+  .content-area {
+    @include make-row();
+  }
+
+  .hero {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .left-rail {
+    @include make-md-column(3);
+
+    .resources {
+      li {
+        border-bottom: 1px solid $border-turquoise;
+        padding: 8px 2px;
+
+        &:first-child { padding-top: 0; }
+        &:last-child { padding-bottom: 0; border-bottom: none; }
+
+        &.article a { background: url('/images/article@2x.png') no-repeat 0 4px; background-size: 12px 12px; }
+        &.video a { background: url('/images/video@2x.png') no-repeat 0 4px; background-size: 12px 12px; }
+
+        a {
+          display: block;
+          padding-left: 18px;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  @include timeline;
+
+  .right-rail {
+    @include make-md-column(3);
+
+    section {
+      margin-bottom: 20px;
+
+      &.members, &.experts {
+        margin-top: 20px;
+
+        ul { list-style: none; padding-left: 10px; }
+
+        li {
+          float: left;
+          width: 50px;
+          height: 50px;
+
+          img { width: 100%; height: 100%; }
+        }
+      }
+
+      &.experts { border-left: 4px solid $experts-color; }
+      &.members { border-left: 4px solid $members-color; }
+    }
+  }
+}

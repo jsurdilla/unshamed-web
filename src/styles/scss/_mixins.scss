@@ -1,0 +1,7 @@
+@mixin delete-link-position($top:0px, $right:0px) {
+  .delete {
+    position: absolute; top: $top; right: $right;
+    img { width: 9px; visibility: hidden; }
+  }
+  &:hover .delete img { visibility: visible; }
+}

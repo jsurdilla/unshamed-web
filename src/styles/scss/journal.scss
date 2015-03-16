@@ -1,0 +1,61 @@
+@import "variables";
+@import "base";
+
+#journal {
+  .content-area {
+    @include make-row();
+  }
+
+  .left-rail {
+    @include make-md-column(3);
+
+    .journal-entries ul { list-style: none }
+    .journal-entries li {
+      margin-bottom: 1em;
+
+      &.public { background: transparent url(/images/unlocked.png) no-repeat top 0.5rem right; background-size: auto 20px; }
+      .title {font-weight: bold; font-size: 1.1em; display: block; }
+    }
+
+    .new-entry {
+      float: right;
+      font-size: 1.2rem;
+      vertical-align: middle;
+    }
+  }
+
+  .main-rail {
+    @include make-md-column(9);
+
+    .title {
+      @include make-md-column(7);
+    }
+
+    .date {
+      @include make-md-column(5);
+    }
+
+    .actions {
+      @include clearfix();
+      margin-top: 1em;
+
+      label { float: left; }
+      button { margin-left: 1em; padding: 5px 10px; }
+    }
+
+    .visibility-warning { margin-top: 1em; }
+
+    .trumbowyg { margin: 0; width: 100%; }
+  }
+}
+
+.confirmation {
+  width: 130px;
+  button {
+    display: inline-block;
+    padding: 6px 8px;
+
+    &:first-child { float: left; }
+    &:last-child { float: right; }
+  }
+}
