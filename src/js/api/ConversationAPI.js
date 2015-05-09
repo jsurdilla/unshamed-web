@@ -14,7 +14,7 @@ function fetchConversations() {
       if (err) {
         ConversationServerActionCreators.handleFetchConversationsError(err, resp);
       } else {
-        ConversationServerActionCreators.handleFetchConversationsSuccess(JSON.parse(resp.text).conversations);
+        ConversationServerActionCreators.handleFetchConversationsSuccess(JSON.parse(resp.text));
       }
     })
 }

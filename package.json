@@ -63,5 +63,8 @@
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^2.6.1",
     "wiredep": "^2.2.2"
+  },
+  "dependencies": {
+    "gulp-css-url-adjuster": "^0.2.3"
   }
 }

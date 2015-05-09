@@ -2,7 +2,7 @@
 
 var cn = require('classnames')
 var { kebabCase } = require('lodash');
-var UserSidebarGridItem = require('./user_sidebar_grid_item');
+var UserSidebarGridItem = require('./userSidebarGridItem');
 var PureRenderMixin = require('react/addons').addons.PureRenderMixin;
 var React = require('react');
 
@@ -11,6 +11,8 @@ var UserSidebarGrid = React.createClass({
   mixins: [PureRenderMixin],
 
   render() {
+    console.log('UserSidebarGrid#render');
+
     var userSidebarGridItems = this.props.users.toArray().map((user) => {
       return <UserSidebarGridItem key={ 'm-'+user.get('id') } user={ user } />;
     });
