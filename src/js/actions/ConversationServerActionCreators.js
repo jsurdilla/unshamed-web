@@ -17,10 +17,10 @@ function handleReplyToConversationError(err, response) {
   });
 }
 
-function handleFetchConversationsSuccess(conversations) {
+function handleFetchConversationsSuccess(response) {
   AppDispatcher.handleServerAction({
     type: ActionTypes.FETCH_CONVERSATIONS_SUCCESS,
-    conversations
+    response
   });
 }
 
@@ -44,8 +44,15 @@ function handleStartConversationError(err, response) {
 }
 
 function handleNewReplyPush(message) {
-  AppDispatcher.handlePushAction({ 
+  AppDispatcher.handlePushAction({
     type: ActionTypes.NEW_REPLY_PUSH,
+    message
+  });
+}
+
+function handleMessageCountChangePush(message) {
+  AppDispatcher.handlePushAction({
+    type: ActionTypes.MESSAGE_COUNT_CHANGE_PUSH,
     message
   });
 }
@@ -60,5 +67,6 @@ module.exports = {
   handleStartConversationSuccess,
   handleStartConversationError,
 
-  handleNewReplyPush
+  handleNewReplyPush,
+  handleMessageCountChangePush
 };

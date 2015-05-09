@@ -33,6 +33,8 @@ AppDispatcher.dispatchToken = AppDispatcher.register((payload) => {
 
   switch(payload.type) {
     case ActionTypes.FETCH_CONVERSATIONS_SUCCESS:
+      conversations = payload.response.conversations;
+
       each(pluck(conversations, 'id'), ConversationListStore.add);
       ConversationListStore.emitChange();
       break;

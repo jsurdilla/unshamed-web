@@ -7,6 +7,7 @@ var { Map } = require('Immutable');
 
 let _conversations = Map();
 let _lastReplySent;
+let _unreadMessageCount;
 
 const ConversationStore = assign({
   // TODO: merge add an update
@@ -32,6 +33,10 @@ const ConversationStore = assign({
 
   markAsUnread(conversationID) {
     _conversations = _conversations.set(conversationID, _conversations.get(conversationID).set('read', false));
+  },
+
+  getUnreadMessageCount() {
+    return _unreadMessageCount;
   }
 }, ChangeAwareMixin);
 
@@ -40,10 +45,12 @@ ConversationStore.dispatchToken = AppDispatcher.register((payload) => {
   // clean up later
   var { action } = payload;
   payload = action || payload;
-  var { conversation, conversationID, conversations, comments, message } = payload;
+  var { conversation, conversationID, conversations, comments, message, unread_message_count } = payload;
 
   switch (payload.type) {
     case ActionTypes.FETCH_CONVERSATIONS_SUCCESS:
+      conversations = payload.response.conversations;
+      _unreadMessageCount = payload.response.unread_message_count;
       each(conversations, ConversationStore.add);
       ConversationStore.emitChange();
       break;
@@ -68,6 +75,11 @@ ConversationStore.dispatchToken = AppDispatcher.register((payload) => {
 
     case ActionTypes.CLICK_CONVERSATION:
       ConversationStore.markAsRead(conversationID);
+      ConversationStore.emitChange();
+      break;
+
+    case ActionTypes.MESSAGE_COUNT_CHANGE_PUSH:
+      _unreadMessageCount = message;
       ConversationStore.emitChange();
       break;
   }

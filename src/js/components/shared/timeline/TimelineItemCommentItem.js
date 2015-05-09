@@ -2,6 +2,7 @@
 
 var CommentActionCreators = require('../../../actions/CommentActionCreators');
 var DeleteConfirmationModal = require('../DeleteConfirmationModal');
+var { fullNameOrUsername } = require('../../../utils/record_utils/UserUtils');
 var { Link } = require('react-router');
 var { Map } = require('immutable');
 var { ModalTrigger } = require('react-bootstrap');
@@ -16,22 +17,21 @@ var TimelineItemCommentItem = React.createClass({
 
   render() {
     var comment = this.props.comment;
+    var author = comment.get('author');
 
     return (
       <li className='clearfix comment'>
-        <img src={ comment.getIn(['author', 'profile_pictures', 'square50']) } />
+        <img src={comment.getIn(['author', 'profile_pictures', 'square50'])} />
         <div className='name-time'>
-          <Link to='member' params={{ userID: comment.getIn(['author', 'id']) }} className='name'>
-            { comment.getIn(['author', 'full_name']) }
-          </Link>
+          <Link to='member' params={{userID: comment.getIn(['author', 'id'])}} className='name'>{fullNameOrUsername(author)}</Link>
           <br />
-          <span className='time'>{ moment(comment.get('updated_at')).fromNow() }</span>
+          <span className='time'>{moment(comment.get('updated_at')).fromNow()}</span>
         </div>
-        <div className='comment-body'>{ comment.get('comment') } </div>
+        <div className='comment-body'>{comment.get('comment')} </div>
         <ModalTrigger modal={
           <DeleteConfirmationModal 
             prompt="Are you sure you want to delete this comment?"
-            onDelete={ this._deleteComment } />
+            onDelete={this._deleteComment} />
           }>
           <a className='delete'><img src='/images/close.png' /></a>
         </ModalTrigger>

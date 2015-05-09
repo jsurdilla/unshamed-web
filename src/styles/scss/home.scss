@@ -43,6 +43,10 @@
   .right-rail {
     @include make-md-column(3);
 
+    .unread-message-count {
+      margin-left: 10px;
+    }
+
     section {
       margin-bottom: 20px;
 

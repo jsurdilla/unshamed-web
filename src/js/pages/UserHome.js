@@ -2,6 +2,9 @@
 
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var AuthFilterMixin = require('../utils/AuthFilterMixin');
+var { Badge, Button, Navbar, DropdownButton, MenuItem, Nav } = require('react-bootstrap');
+var ConversationActionCreators = require('../actions/ConversationActionCreators');
+var ConversationStore = require('../stores/ConversationStore');
 var CurrentUserStore = require('../stores/CurrentUserStore');
 var FriendsSidebarSection = require('../components/home/FriendsSidebarSection');
 var FriendAPI = require('../api/FriendAPI');
@@ -46,6 +49,7 @@ var UserHome = React.createClass({
   },
 
   componentDidMount() {
+    ConversationStore.addChangeListener(this._onChange);
     UserStore.addChangeListener(this._onChange);
     FriendStore.addChangeListener(this._onChange);
     HomeTimelineStore.addChangeListener(this._onChange);
@@ -55,6 +59,8 @@ var UserHome = React.createClass({
     UserAPI.fetchRecentMembers();
     FriendAPI.fetchFriends(CurrentUserStore.getCurrentUser().get('id'));
     TimelineAPI.fetchHomeTimeline();
+
+    ConversationActionCreators.fetchConversations();
   },
 
   render() {
@@ -66,27 +72,30 @@ var UserHome = React.createClass({
           <div className='content-area'>
 
             <div className='left-rail'>
-              { this.state.friends && <FriendsSidebarSection friends={ this.state.friends } /> }
+              {this.state.friends && <FriendsSidebarSection friends={ this.state.friends } />}
               <ResourcesSidebarSection />
             </div>
             
             <div className='timeline'>
               <img className='hero' src='/images/community.jpg' />
               <NewStatusUpdate />
-              { this.state.timelineIDs &&
+              {this.state.timelineIDs &&
                 <Timeline 
-                  timelineIDs={ this.state.timelineIDs }
-                  hasMore={ HomeTimelineStore.hasMore }
-                  isFetching={ HomeTimelineStore.isFetching }
-                  fetchTimeline={ this._fetchTimeline } />
+                  timelineIDs={this.state.timelineIDs}
+                  hasMore={HomeTimelineStore.hasMore}
+                  isFetching={HomeTimelineStore.isFetching}
+                  fetchTimeline={this._fetchTimeline} />
               }
             </div>
 
             <div className='right-rail'>
-              <Link to='conversations' className='wire-btn'><img src='/images/speech-bubble@2x.png' />Messages</Link>
+              <Link to='conversations' className='wire-btn'><img src='/images/speech-bubble@2x.png' />
+                Messages 
+                <Badge className='unread-message-count' bsStyle='primary'>{ConversationStore.getUnreadMessageCount()}</Badge>
+              </Link>
               <Link to='new_journal_entry' className='wire-btn'><img src='/images/journal@2x.png' />Journal</Link>
-              { this.state.members && <UserSidebarGrid users={ this.state.members } header='Members' members={ true } /> }
-              { this.state.mhps && <UserSidebarGrid users={ this.state.mhps } header='Experts' experts={ true } /> }
+              {this.state.members && <UserSidebarGrid users={this.state.members} header='Members' members={true} />}
+              {this.state.mhps && <UserSidebarGrid users={this.state.mhps} header='Experts' experts={true} />}
             </div>
 
           </div>
@@ -96,6 +105,7 @@ var UserHome = React.createClass({
   },
 
   componentWillUnmount() {
+    ConversationStore.removeChangeListener(this._onChange);
     UserStore.removeChangeListener(this._onChange);
     FriendStore.removeChangeListener(this._onChange);
     HomeTimelineStore.removeChangeListener(this._onChange);

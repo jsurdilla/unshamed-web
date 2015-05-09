@@ -40,6 +40,10 @@ function connect(user) {
 
   _channel = _socket.subscribe('private-user' + user.get('id'));
 
+  _channel.bind('message-count-changed', (message) => {
+    ConversationServerActionCreators.handleMessageCountChangePush(message);
+  });
+
   _channel.bind('new-reply', (message) => {
     ConversationServerActionCreators.handleNewReplyPush(message);
   });
