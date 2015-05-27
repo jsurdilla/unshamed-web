@@ -6,6 +6,7 @@ var { OrderedSet } = require('Immutable');
 var UserStore = require('./UserStore');
 
 var _members = OrderedSet();
+var _currentPage = 1;
 
 var MemberStore = assign({
   add(user) {
@@ -14,6 +15,10 @@ var MemberStore = assign({
 
   getAll() {
     return _members;
+  },
+
+  getCurrentPage() {
+    return _currentPage;
   }
 }, ChangeAwareMixin);
 
@@ -32,6 +37,7 @@ MemberStore.dispatchToken = AppDispatcher.register((payload) => {
 
     case ActionTypes.FETCH_RECENT_MEMBERS_SUCCESS:
       each(users, MemberStore.add);
+      _currentPage += 1;
       MemberStore.emitChange();
       break;
   }

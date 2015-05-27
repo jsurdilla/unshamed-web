@@ -25,11 +25,11 @@ function fetchRecentMHPs() {
   UserAPI.fetchRecentMHPs();
 }
 
-function fetchRecentMembers() {
+function fetchRecentMembers(page) {
   AppDispatcher.handleViewAction({
     type: ActionTypes.FETCH_RECENT_MEMBERS
   });
-  UserAPI.fetchRecentMembers();
+  UserAPI.fetchRecentMembers(page);
 }
 
 function updateCurrentUser(user) {

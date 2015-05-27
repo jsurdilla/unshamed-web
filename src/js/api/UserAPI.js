@@ -49,12 +49,12 @@ function fetchRecentMHPs() {
         UserServerActionCreators.handleFetchRecentMHPsSuccess(JSON.parse(resp.text).users);
       }
     });
- }
+}
 
-
-function fetchRecentMembers() {
+function fetchRecentMembers(page) {
   superagent
     .get('/api/v1/users/most_recent')
+    .query({ page: page })
     .set(retrieveAuthHeaders())
     .end((err, resp) => {
       if (err) {
