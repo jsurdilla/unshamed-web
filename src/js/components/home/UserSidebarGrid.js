@@ -2,17 +2,18 @@
 
 var cn = require('classnames')
 var { kebabCase } = require('lodash');
-var UserSidebarGridItem = require('./userSidebarGridItem');
 var PureRenderMixin = require('react/addons').addons.PureRenderMixin;
 var React = require('react');
+var UserSidebarGridItem = require('./userSidebarGridItem');
 
 var UserSidebarGrid = React.createClass({
 
-  mixins: [PureRenderMixin],
+  propTypes: {
+    users: React.PropTypes.array.isRequired, // array of users
+    detailsLink: React.PropTypes.node // link to the details page
+  },
 
   render() {
-    console.log('UserSidebarGrid#render');
-
     var userSidebarGridItems = this.props.users.toArray().map((user) => {
       return <UserSidebarGridItem key={ 'm-'+user.get('id') } user={ user } />;
     });
@@ -23,8 +24,10 @@ var UserSidebarGrid = React.createClass({
       <section className={cn(className)}>
         <h3>{this.props.header}</h3>
         <ul className='clearfix'>
-          { userSidebarGridItems }
+          {userSidebarGridItems}
         </ul>
+
+        {this.props.detailsLink}
       </section>
     );
   }

@@ -69,3 +69,21 @@
     }
   }
 }
+
+
+/**
+ * Members Grid
+ **/
+
+#members {
+  .member {
+    @include make-sm-column(3);
+
+    img {
+      width: 100%;
+      height: auto;
+      @media (min-width: $screen-sm-min) { height: 160px; }
+      @media (min-width: $screen-md-min) { height: 215px; }
+    }
+  }
+}

@@ -49,7 +49,7 @@ const MembersStore = Reflux.createStore({
 
 		const self = this;
 		request
-			.get('/api/v1/users/most_recent')
+			.get('/api/v1/mhps/most_recent')
 			.set(retrieveAuthHeaders())
 			.query({ page: this.page })
 			.end((err, resp) => {

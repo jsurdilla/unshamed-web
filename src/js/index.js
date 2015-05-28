@@ -13,6 +13,7 @@ var JournalEntry = require('./pages/JournalEntry');
 var Landing = require('./pages/Landing');
 var Member = require('./pages/Member');
 var Members = require('./pages/Members');
+var MHPs = require('./pages/MHPs');
 var MyProfile = require('./pages/MyProfile');
 var NewConversation = require('./components/conversations/NewConversation');
 var Onboard = require('./pages/Onboard');
@@ -32,9 +33,10 @@ var routes = (
       <Route name='conversation' path=':conversationID' handler={ Conversation } />
     </Route>
 
-    <Route name='members' path='members' handler={Members} />
-
     <Route name='member' path='member/:userID' handler={ Member } />
+    <Route name='members' handler={ Members } />
+    <Route name='mhps' handler={ MHPs } />
+
     <Route name='journal_entries' handler={ JournalEntries }>
       <Route name='new_journal_entry' path='new' handler={ NewJournalEntry } />
       <Route name='journal_entry' path=':journalEntryID' handler={ JournalEntry } />

@@ -20,7 +20,7 @@ var ResourceAPI = require('../api/ResourceAPI');
 var ResourcesSidebarSection = require('../components/home/ResourcesSidebarSection');
 var { Link } = require('react-router');
 var UserAPI = require('../api/UserAPI');
-var UserSidebarGrid = require('../components/home/user_sidebar_grid');
+var UserSidebarGrid = require('../components/home/UserSidebarGrid');
 var UserStore = require('../stores/UserStore');
 var Timeline = require('../components/shared/timeline/Index');
 var TimelineActionCreators = require('../actions/TimelineActionCreators');
@@ -94,8 +94,14 @@ var UserHome = React.createClass({
                 <Badge className='unread-message-count' bsStyle='primary'>{ConversationStore.getUnreadMessageCount()}</Badge>
               </Link>
               <Link to='new_journal_entry' className='wire-btn'><img src='/images/journal@2x.png' />Journal</Link>
-              {this.state.members && <UserSidebarGrid users={this.state.members} header='Members' members={true} />}
-              {this.state.mhps && <UserSidebarGrid users={this.state.mhps} header='Experts' experts={true} />}
+
+              {this.state.members && 
+                <UserSidebarGrid users={this.state.members} header='Members' members={true} detailsLink={<Link to='members'>Show All</Link>} />
+              }
+
+              {this.state.mhps &&
+                <UserSidebarGrid users={this.state.mhps} header='Experts' experts={true} detailsLink={<Link to='mhps'>Show All</Link>} />
+              }
             </div>
 
           </div>
