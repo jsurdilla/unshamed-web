@@ -12,6 +12,8 @@ var NewJournalEntry = require('./pages/NewJournalEntry');
 var JournalEntry = require('./pages/JournalEntry');
 var Landing = require('./pages/Landing');
 var Member = require('./pages/Member');
+var Members = require('./pages/Members');
+const MHPsPage = require('./reflux/views/MHPsPage');
 var MyProfile = require('./pages/MyProfile');
 var NewConversation = require('./components/conversations/NewConversation');
 var Onboard = require('./pages/Onboard');
@@ -30,7 +32,11 @@ var routes = (
       <Route name='new_conversation' path='new' handler={ NewConversation } />
       <Route name='conversation' path=':conversationID' handler={ Conversation } />
     </Route>
+
     <Route name='member' path='member/:userID' handler={ Member } />
+    <Route name='members' handler={ Members } />
+    <Route name='mhps' handler={ MHPsPage } />
+
     <Route name='journal_entries' handler={ JournalEntries }>
       <Route name='new_journal_entry' path='new' handler={ NewJournalEntry } />
       <Route name='journal_entry' path=':journalEntryID' handler={ JournalEntry } />

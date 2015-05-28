@@ -14,7 +14,7 @@ var MHPStore = require('../../stores/MHPStore');
 var OutgoingFriendRequestStore = require('../../stores/OutgoingFriendRequestStore');
 var React = require('react');
 var UserAPI = require('../../api/UserAPI'); 
-var UserSidebarGrid = require('../../components/home/user_sidebar_grid');
+var UserSidebarGrid = require('../../components/home/UserSidebarGrid');
 var UserStore = require('../../stores/UserStore');
 var { State } = require('react-router');
 
