@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "Joselito Surdilla",
   "license": "ISC",
@@ -41,6 +41,7 @@
     "gulp-watch": "^4.2.3",
     "gutil": "^1.6.4",
     "immutable": "^3.6.4",
+    "jest-cli": "^0.4.5",
     "keymirror": "^0.1.1",
     "lodash": "^3.5.0",
     "moment": "^2.9.0",
@@ -50,9 +51,9 @@
     "react": "^0.12.2",
     "react-avatar-editor": "git://github.com/jsurdilla/react-avatar-editor",
     "react-bootstrap": "^0.17.0",
+    "react-forms": "git://github.com/prometheusresearch/react-forms.git",
     "react-router": "^0.12.4",
     "react-typeahead": "git://github.com/jsurdilla/react-typeahead",
-    "react-forms": "git://github.com/prometheusresearch/react-forms.git",
     "reactify": "^1.1.0",
     "require-dir": "^0.3.0",
     "rework": "^1.0.1",
@@ -65,6 +66,14 @@
     "wiredep": "^2.2.2"
   },
   "dependencies": {
-    "gulp-css-url-adjuster": "^0.2.3"
+    "gulp-css-url-adjuster": "^0.2.3",
+    "react": "*",
+    "react-tools": "*"
+  },
+    "jest": {
+    "testDirectoryName": "tests",
+    "testPathDirs": ["<rootDir>/tests"],
+    "scriptPreprocessor": "<rootDir>/preprocessor.js",
+    "unmockedModulePathPatterns": ["<rootDir>/node_modules/react"]
   }
 }

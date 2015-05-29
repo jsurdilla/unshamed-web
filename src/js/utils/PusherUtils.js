@@ -20,7 +20,7 @@ function connect(user) {
 
   console.log('Setting up Pusher');
 
-  let pusherKey;
+  var pusherKey;
   if (document.URL.indexOf('unshamed.com') !== -1) {
     pusherKey = '6920741a0fb1dbe72c03';
   } else if (document.URL.indexOf('localhost') !== -1) {
